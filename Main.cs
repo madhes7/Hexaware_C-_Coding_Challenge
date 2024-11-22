@@ -10,8 +10,7 @@ namespace CareerHub
     {
         public Main( )
         {
-            // Sample connection string (replace with actual connection string)
-            string connectionString = "Server=localhost;Database=CareerHub;User Id=sa;Password=password;";
+           
 
             // Initialize repositories and services
             var jobListingRepository = new JobListingRepositories();
@@ -37,10 +36,17 @@ namespace CareerHub
                 Console.WriteLine("4. View All Job Listings");
                 Console.WriteLine("5. View All Companies");
                 Console.WriteLine("6. View Applicants for a Job");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("7. Get Jobs Posted by a Company");
+                Console.WriteLine("8. Insert a New Company");
+                Console.WriteLine("9. Insert a New Applicant");
+                Console.WriteLine("10. Get All Applicants");
+                Console.WriteLine("11. Insert Job Listing");
+                Console.WriteLine("12. Insert Job Application");
+                Console.WriteLine("13. Get Applicants for a Job");
+                Console.WriteLine("14. Exit");
 
                 // Get user input for menu choice
-                Console.Write("Enter your choice (1-7): ");
+                Console.Write("Enter your choice (1-14): ");
                 string choice = Console.ReadLine();
 
                 switch (choice)
@@ -70,9 +76,29 @@ namespace CareerHub
                         break;
 
                     case "7":
+                        GetJobs(companyService);
+                        return;
+                    case "8":
+                        InsertCompany(companyService);
+                        return;
+                    case "9":
+                        InsertApplicant( applicantService);
+                        return;
+                    case "10":
+                        GetApplicants( applicantService);
+                        return;
+                    case "11":
+                        VInsertJobListing(jobListingService);
+                        return;
+                    case "12":
+                        InsertJobApplication( jobApplicationService);
+                        return;
+                    case "13":
+                        GetApplicants( jobListingService);
+                        return;
+                    case "14":
                         Console.WriteLine("Exiting application...");
                         return;
-
                     default:
                         Console.WriteLine("Invalid choice, please select between 1 and 7.");
                         break;
@@ -130,6 +156,46 @@ namespace CareerHub
            jobListingService.GetApplicants();
 
           
+        }
+        private static void GetJobs(CompanyService companyService)
+        {
+            companyService.GetJobs();
+
+
+        }
+        private static void InsertCompany(CompanyService companyService)
+        {
+            companyService.InsertCompany();
+
+
+        }
+        private static void InsertApplicant(ApplicantService applicantService)
+        {
+
+            applicantService.InsertApplicant();
+            Console.WriteLine("Application submitted successfully!");
+        }
+        private static void GetApplicants(ApplicantService applicantService)
+        {
+
+            applicantService.GetApplicants();
+            Console.WriteLine("Application submitted successfully!");
+        }
+        private static void InsertJobApplication(JobApplicationService jobApplicationService)
+        {
+
+            jobApplicationService.InsertJobApplication();
+            Console.WriteLine("Application submitted successfully!");
+        }
+        private static void VInsertJobListing(JobListingService jobListingService)
+        {
+            jobListingService.GetApplicants();
+
+
+        }
+        private static void GetApplicants(JobListingService jobListingService)
+        {
+            jobListingService.GetApplicants();
         }
     }
 }
