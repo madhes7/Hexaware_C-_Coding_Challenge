@@ -109,5 +109,33 @@ namespace CareerHub.Repositories
             }
             return jobListings;
         }
+
+        public List<JobListing> ListbasedOnSalary(decimal s,decimal e)
+        {
+            var jobListings = new List<JobListing>();
+            using var connection = new SqlConnection(_connectionString);
+            string query = "SELECT * FROM Job where salary >= @s And Salary <=@e";
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@s", s);
+            command.Parameters.AddWithValue("@e", e);
+
+            connection.Open();
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                jobListings.Add(new JobListing
+                {
+                    JobID = reader.GetInt32(0),
+                    CompanyID = reader.GetInt32(1),
+                    JobTitle = reader.GetString(2),
+                    JobDescription = reader.GetString(3),
+                    JobLocation = reader.GetString(4),
+                    Salary = reader.GetDecimal(5),
+                    JobType = reader.GetString(6),
+                    PostedDate = reader.GetDateTime(7)
+                });
+            }
+            return jobListings;
+        }
     }
 }

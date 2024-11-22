@@ -13,5 +13,6 @@ namespace CareerHub.Repositories
         List<Applicant> GetApplicants(int jobID);
         void InsertJobListing(JobListing jobListing);
         List<JobListing> GetJobListings();
+        List<JobListing> ListbasedOnSalary(decimal s,decimal e);
     }
 }

@@ -43,7 +43,8 @@ namespace CareerHub
                 Console.WriteLine("11. Insert Job Listing");
                 Console.WriteLine("12. Insert Job Application");
                 Console.WriteLine("13. Get Applicants for a Job");
-                Console.WriteLine("14. Exit");
+                Console.WriteLine("13. Salary Range job search");
+                Console.WriteLine("15. Exit");
 
                 // Get user input for menu choice
                 Console.Write("Enter your choice (1-14): ");
@@ -97,6 +98,9 @@ namespace CareerHub
                         GetApplicants( jobListingService);
                         return;
                     case "14":
+                        ListbasedOnSalary(jobListingService);
+                        return;
+                    case "15":
                         Console.WriteLine("Exiting application...");
                         return;
                     default:
@@ -196,6 +200,10 @@ namespace CareerHub
         private static void GetApplicants(JobListingService jobListingService)
         {
             jobListingService.GetApplicants();
+        }
+        private static void ListbasedOnSalary(JobListingService jobListingService)
+        {
+            jobListingService.ListbasedOnSalary();
         }
     }
 }

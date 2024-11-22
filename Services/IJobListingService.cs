@@ -16,5 +16,7 @@ namespace CareerHub.Services
 
         // Method to retrieve all job listings
         void GetJobListings();
+
+        void ListbasedOnSalary();
     }
 }

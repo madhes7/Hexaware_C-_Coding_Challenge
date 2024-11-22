@@ -109,5 +109,22 @@ namespace CareerHub.Services
             }
          
         }
+        public void ListbasedOnSalary()
+        {
+            Console.WriteLine("\n--- Enter the Start range ---");
+            decimal s= Convert.ToDecimal(Console.ReadLine());
+            Console.WriteLine("\n--- Enter the End range ---");
+            decimal e = Convert.ToDecimal(Console.ReadLine());
+
+
+            List<JobListing> jobListings = _jobListingRepositories.ListbasedOnSalary(s,e);
+
+            Console.WriteLine("Job Listings:");
+            foreach (var job in jobListings)
+            {
+                Console.WriteLine($"Job ID: {job.JobID}, Title: {job.JobTitle}, Location: {job.JobLocation}, Salary: {job.Salary}");
+            }
+
+        }
     }
 }
